@@ -5,7 +5,7 @@ FROM eclipse-temurin:17-jdk
 WORKDIR /app
 
 # Copiar el jar
-COPY target/hospital-apirest-0.0.1-SNAPSHOT.jar app.jar
+COPY target/hospital-Apirest-0.0.1-SNAPSHOT.jar app.jar
 
 # Exponer el puerto del backend
 EXPOSE 3333
