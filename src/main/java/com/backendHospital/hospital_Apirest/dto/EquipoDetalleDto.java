@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,7 +22,7 @@ public class EquipoDetalleDto {
     private String estado;
     private String taller;
     private String hospital;
-    private String ultimoMantenimiento;
+    private LocalDate ultimoMantenimiento;
     private TipoMantenimiento tipoMantenimiento;
     private String servicio;
 }

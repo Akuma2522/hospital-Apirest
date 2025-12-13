@@ -27,10 +27,10 @@ public class EquipoController {
         return ResponseEntity.ok(service.findById(id));
     }
 
-//    @PostMapping
-//    public ResponseEntity<EquipoResponseDto> create(@RequestBody EquipoRequestDto dto) {
-//        return ResponseEntity.ok(service.create(dto));
-//    }
+    @PostMapping
+    public ResponseEntity<EquipoResponseDto> create(@RequestBody EquipoRequestDto dto) {
+        return ResponseEntity.ok(service.create(dto));
+    }
 
     @PatchMapping ("/{id}")
     public ResponseEntity<EquipoDetalleDto> update(@PathVariable Long id, @RequestBody EquipoUpdateDto dto) {

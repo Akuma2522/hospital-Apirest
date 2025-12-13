@@ -39,12 +39,37 @@ public class EquipoServiceImpl implements EquipoService {
                 .taller(e.getTaller() != null ? e.getTaller().getNombre() : null)
                 .servicio(e.getServicio() != null ? e.getServicio().getNombre() : null)
                 .hospital(e.getServicio().getUnidad() != null ? e.getServicio().getUnidad().getNombre() : null)
-                .ultimoMantenimiento(e.getUltimoMantenimiento().toString())
+                .ultimoMantenimiento(e.getUltimoMantenimiento())
                 .tipoMantenimiento(e.getTipoMantenimiento())
                 .build();
     }
 
-
+    private EquipoResponseDto toDtoCreate(Equipo e) {
+        return EquipoResponseDto.builder()
+                .id(e.getId())
+                .codigoPatrimonial(e.getCodigoPatrimonial())
+                .denominacionGeneral(e.getDenominacionGeneral())
+                .denominacionEspecifica(e.getDenominacionEspecifica())
+                .marca(e.getMarca() != null ? e.getMarca().getNombre() : null)
+                .modelo(e.getModelo() != null ? e.getModelo().getNombre() : null)
+                .serie(e.getSerie())
+                .tipoEquipamiento(e.getTipoEquipamiento())
+                .criticidad(e.getCriticidad())
+                .estado(e.getEstado().getDescripcion())
+                .modalidadEjecucion(e.getModalidadEjecucion())
+                .idTaller(e.getTaller() != null ? e.getTaller().getId() : null)
+                .idTecnico(e.getTecnico().getId())
+                .anioAdquisicion(e.getAnioAdquisicion())
+                .vidaUtilYears(e.getVidaUtilYears())
+                .idProveedor(e.getProveedor().getId())
+                .fechaRecepcion(e.getFechaRecepcion())
+                .idHospital(e.getServicio().getUnidad().getId())
+                .ultimoMantenimiento(e.getUltimoMantenimiento())
+                .tipoMantenimiento(e.getTipoMantenimiento())
+                .idServicio(e.getServicio() != null ? e.getServicio().getId() : null)
+                .equipoPrincipalId(e.getEquipoPrincipal().getId())
+                .build();
+    }
 
     @Override
     public List<EquipoDetalleDto> findAll() {
@@ -60,63 +85,64 @@ public class EquipoServiceImpl implements EquipoService {
         return toDto(e);
     }
 
-//    @Override
-//    public EquipoResponseDto create(EquipoRequestDto dto) {
-//
-//        // VALIDACIÓN MANUAL: evitar duplicados
-//        if (repo.existsByCodigoPatrimonial(dto.getCodigoPatrimonial())) {
-//            throw new IllegalArgumentException(
-//                    "El código patrimonial ya existe: " + dto.getCodigoPatrimonial()
-//            );
-//        }
-//
-//        Equipo e = Equipo.builder()
-//                .codigoPatrimonial(dto.getCodigoPatrimonial())
-//                .denominacionGeneral(dto.getDenominacionGeneral())
-//                .denominacionEspecifica(dto.getDenominacionEspecifica())
-//                .serie(dto.getSerie())
-//                .tipoEquipamiento(dto.getTipoEquipamiento())
-//                .criticidad(dto.getCriticidad())
-//                .estado(dto.getEstado())
-//                .modalidadEjecucion(dto.getModalidadEjecucion())
-//                .anioAdquisicion(dto.getAnioAdquisicion())
-//                .vidaUtilYears(dto.getVidaUtilYears())
-//                .fechaRecepcion(dto.getFechaRecepcion())
-//                .ultimoMantenimiento(dto.getUltimoMantenimiento())
-//                .tipoMantenimiento(dto.getTipoMantenimiento())
-//                .build();
-//
-//        if (dto.getIdMarca() != null) {
-//            e.setMarca(marcaRepo.findById(dto.getIdMarca())
-//                    .orElseThrow(() -> new RuntimeException("Marca not found")));
-//        }
-//        if (dto.getIdModelo() != null) {
-//            e.setModelo(modeloRepo.findById(dto.getIdModelo())
-//                    .orElseThrow(() -> new RuntimeException("Modelo not found")));
-//        }
-//        if (dto.getIdTaller() != null) {
-//            e.setTaller(tallerRepo.findById(dto.getIdTaller())
-//                    .orElseThrow(() -> new RuntimeException("Taller not found")));
-//        }
-//        if (dto.getIdTecnico() != null) {
-//            e.setTecnico(tecnicoRepo.findById(dto.getIdTecnico())
-//                    .orElseThrow(() -> new RuntimeException("Tecnico not found")));
-//        }
-//        if (dto.getIdProveedor() != null) {
-//            e.setProveedor(proveedorRepo.findById(dto.getIdProveedor())
-//                    .orElseThrow(() -> new RuntimeException("Proveedor not found")));
-//        }
-//        if (dto.getIdServicio() != null) {
-//            e.setServicio(servicioRepo.findById(dto.getIdServicio())
-//                    .orElseThrow(() -> new RuntimeException("Servicio not found")));
-//        }
-//        if (dto.getEquipoPrincipalId() != null) {
-//            e.setEquipoPrincipal(equipoRepo.findById(dto.getEquipoPrincipalId())
-//                    .orElseThrow(() -> new RuntimeException("Equipo principal not found")));
-//        }
-//
-//        return toDto(repo.save(e));
-//    }
+    @Override
+    public EquipoResponseDto create(EquipoRequestDto dto) {
+
+        // VALIDACIÓN MANUAL: evitar duplicados
+        if (repo.existsByCodigoPatrimonial(dto.getCodigoPatrimonial())) {
+            throw new IllegalArgumentException(
+                    "El código patrimonial ya existe: " + dto.getCodigoPatrimonial()
+            );
+        }
+
+        Equipo e = Equipo.builder()
+                .codigoPatrimonial(dto.getCodigoPatrimonial())
+                .denominacionGeneral(dto.getDenominacionGeneral())
+                .denominacionEspecifica(dto.getDenominacionEspecifica())
+                .serie(dto.getSerie())
+                .tipoEquipamiento(dto.getTipoEquipamiento())
+                .criticidad(dto.getCriticidad())
+                .estado(dto.getEstado())
+                .modalidadEjecucion(dto.getModalidadEjecucion())
+                .anioAdquisicion(dto.getAnioAdquisicion())
+                .vidaUtilYears(dto.getVidaUtilYears())
+                .fechaRecepcion(dto.getFechaRecepcion())
+                .ultimoMantenimiento(dto.getUltimoMantenimiento())
+                .tipoMantenimiento(dto.getTipoMantenimiento())
+                .build();
+
+        if (dto.getIdMarca() != null) {
+            e.setMarca(marcaRepo.findById(dto.getIdMarca())
+                    .orElseThrow(() -> new RuntimeException("Marca not found")));
+        }
+        if (dto.getIdModelo() != null) {
+            e.setModelo(modeloRepo.findById(dto.getIdModelo())
+                    .orElseThrow(() -> new RuntimeException("Modelo not found")));
+        }
+        if (dto.getIdTaller() != null) {
+            e.setTaller(tallerRepo.findById(dto.getIdTaller())
+                    .orElseThrow(() -> new RuntimeException("Taller not found")));
+        }
+        if (dto.getIdTecnico() != null) {
+            e.setTecnico(tecnicoRepo.findById(dto.getIdTecnico())
+                    .orElseThrow(() -> new RuntimeException("Tecnico not found")));
+        }
+        if (dto.getIdProveedor() != null) {
+            e.setProveedor(proveedorRepo.findById(dto.getIdProveedor())
+                    .orElseThrow(() -> new RuntimeException("Proveedor not found")));
+        }
+        if (dto.getIdServicio() != null) {
+            e.setServicio(servicioRepo.findById(dto.getIdServicio())
+                    .orElseThrow(() -> new RuntimeException("Servicio not found")));
+        }
+
+        if (dto.getEquipoPrincipalId() != null) {
+            e.setEquipoPrincipal(equipoRepo.findById(dto.getEquipoPrincipalId())
+                    .orElseThrow(() -> new RuntimeException("Equipo principal not found")));
+        }
+
+        return toDtoCreate(repo.save(e));
+    }
 
 
     @Override

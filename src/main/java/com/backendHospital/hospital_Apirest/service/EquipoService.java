@@ -10,7 +10,10 @@ import java.util.List;
 public interface EquipoService {
     List<EquipoDetalleDto> findAll();
     EquipoDetalleDto findById(Long id);
-//    EquipoResponseDto create(EquipoRequestDto dto);
+
+    EquipoResponseDto create(EquipoRequestDto dto);
+
+    //    EquipoResponseDto create(EquipoRequestDto dto);
     EquipoDetalleDto update(Long id, EquipoUpdateDto dto);
     void delete(Long id);
 
