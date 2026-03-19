@@ -6,8 +6,7 @@ import com.google.firebase.FirebaseOptions;
 import org.springframework.context.annotation.Configuration;
 
 import jakarta.annotation.PostConstruct;
-
-import java.io.FileInputStream;
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
 @Configuration
@@ -16,8 +15,15 @@ public class FirebaseConfig {
     @PostConstruct
     public void init() {
         try {
-            String path = System.getenv("FIREBASE_CREDENTIALS");
-            InputStream serviceAccount = new FileInputStream(path);
+
+            String firebaseConfig = System.getenv("FIREBASE_CREDENTIALS");
+
+            if (firebaseConfig == null || firebaseConfig.isEmpty()) {
+                throw new RuntimeException("FIREBASE_CREDENTIALS no está configurado");
+            }
+
+            InputStream serviceAccount =
+                    new ByteArrayInputStream(firebaseConfig.getBytes());
 
             FirebaseOptions options = FirebaseOptions.builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
