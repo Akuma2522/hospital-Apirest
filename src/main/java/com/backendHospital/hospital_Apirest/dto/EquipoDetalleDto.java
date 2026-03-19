@@ -22,7 +22,9 @@ public class EquipoDetalleDto {
     private String estado;
     private String taller;
     private String hospital;
+    private Integer frecuenciaMantenimiento;
     private LocalDate ultimoMantenimiento;
+    private LocalDate proximoMantenimiento;
     private TipoMantenimiento tipoMantenimiento;
     private String servicio;
 }

@@ -16,7 +16,7 @@ public class Modelo {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "marca_id")
+    @JoinColumn(name = "id_marca")
     private Marca marca;
 
     private String nombre;

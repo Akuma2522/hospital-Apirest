@@ -7,4 +7,5 @@ public class TecnicoRequestDto {
     private String telefono;
     private String horario;
     private Long idTaller;
+    private Long idUsuario;
 }

@@ -39,7 +39,9 @@ public class EquipoServiceImpl implements EquipoService {
                 .taller(e.getTaller() != null ? e.getTaller().getNombre() : null)
                 .servicio(e.getServicio() != null ? e.getServicio().getNombre() : null)
                 .hospital(e.getServicio().getUnidad() != null ? e.getServicio().getUnidad().getNombre() : null)
+                .frecuenciaMantenimiento(e.getFrecuenciaMantenimiento())
                 .ultimoMantenimiento(e.getUltimoMantenimiento())
+                .proximoMantenimiento(e.getProximoMantenimiento())
                 .tipoMantenimiento(e.getTipoMantenimiento())
                 .build();
     }
@@ -64,7 +66,9 @@ public class EquipoServiceImpl implements EquipoService {
                 .idProveedor(e.getProveedor().getId())
                 .fechaRecepcion(e.getFechaRecepcion())
                 .idHospital(e.getServicio().getUnidad().getId())
+                .frecuenciaMantenimiento(e.getFrecuenciaMantenimiento())
                 .ultimoMantenimiento(e.getUltimoMantenimiento())
+                .proximoMantenimiento(e.getProximoMantenimiento())
                 .tipoMantenimiento(e.getTipoMantenimiento())
                 .idServicio(e.getServicio() != null ? e.getServicio().getId() : null)
                 .equipoPrincipalId(e.getEquipoPrincipal().getId())
@@ -107,7 +111,9 @@ public class EquipoServiceImpl implements EquipoService {
                 .anioAdquisicion(dto.getAnioAdquisicion())
                 .vidaUtilYears(dto.getVidaUtilYears())
                 .fechaRecepcion(dto.getFechaRecepcion())
+                .frecuenciaMantenimiento(dto.getFrecuenciaMantenimiento())
                 .ultimoMantenimiento(dto.getUltimoMantenimiento())
+                .proximoMantenimiento(dto.getProximoMantenimiento())
                 .tipoMantenimiento(dto.getTipoMantenimiento())
                 .build();
 

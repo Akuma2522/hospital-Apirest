@@ -3,6 +3,8 @@ package com.backendHospital.hospital_Apirest.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "usuario")
 @Data
@@ -22,4 +24,10 @@ public class Usuario {
     private String password;
 
     private String rol;
+
+    @OneToOne(mappedBy = "usuario")
+    private Tecnico tecnico;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Dispositivo> dispositivos;
 }

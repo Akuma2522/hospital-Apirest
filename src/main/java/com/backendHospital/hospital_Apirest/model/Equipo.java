@@ -22,11 +22,11 @@ public class Equipo {
     private String denominacionEspecifica;
 
     @ManyToOne
-    @JoinColumn(name = "marca_id", nullable = false)
+    @JoinColumn(name = "id_marca", nullable = false)
     private Marca marca;
 
     @ManyToOne
-    @JoinColumn(name = "modelo_id", nullable = false)
+    @JoinColumn(name = "id_modelo", nullable = false)
     private Modelo modelo;
 
     @NonNull
@@ -59,24 +59,31 @@ public class Equipo {
     private Integer vidaUtilYears;
 
     @ManyToOne
-    @JoinColumn(name = "proveedor_id", nullable = false)
+    @JoinColumn(name = "id_proveedor", nullable = false)
     private Proveedor proveedor;
 
     @Column(name = "fecha_recepcion")
     private LocalDate fechaRecepcion;
 
     @ManyToOne
-    @JoinColumn(name = "servicio_id", nullable = false)
+    @JoinColumn(name = "id_servicio", nullable = false)
     private Servicio servicio;
 
     @Column(name = "ultimo_mantenimiento")
     private LocalDate ultimoMantenimiento;
+
+    @Column(name = "frecuencia_mantenimiento")
+    private Integer frecuenciaMantenimiento;
+
+    @Column(name = "proximo_mantenimiento")
+    private LocalDate proximoMantenimiento;
 
     @Enumerated(EnumType.STRING)
     private TipoMantenimiento tipoMantenimiento;
 
     // Equipo que contiene a este equipo (si es componente)
     @ManyToOne
-    @JoinColumn(name = "equipo_principal_id")
+    @JoinColumn(name = "id_equipo_principal")
     private Equipo equipoPrincipal;
+
 }
