@@ -20,7 +20,7 @@ public class MantenimientoScheduler {
     @Autowired
     private NotificacionService notificacionService;
 
-    @Scheduled(cron = "0 0 8 * * *") // todos los días 8 AM
+    @Scheduled(cron = "0 7 8 * * *", zone = "America/Lima") // todos los días 8 AM
     public void actualizarMantenimientos() {
 
         LocalDate hoy = LocalDate.now();
