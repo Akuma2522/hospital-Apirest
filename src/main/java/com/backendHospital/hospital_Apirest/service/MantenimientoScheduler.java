@@ -2,6 +2,7 @@ package com.backendHospital.hospital_Apirest.service;
 
 import com.backendHospital.hospital_Apirest.model.Equipo;
 import com.backendHospital.hospital_Apirest.repository.EquipoRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -19,8 +20,8 @@ public class MantenimientoScheduler {
 
     @Autowired
     private NotificacionService notificacionService;
-
-    @Scheduled(cron = "0 20 8 * * *", zone = "America/Lima") // todos los días 8 AM
+    @Transactional
+    @Scheduled(cron = "0 40 8 * * *", zone = "America/Lima") // todos los días 8 AM
     public void actualizarMantenimientos() {
 
         LocalDate hoy = LocalDate.now();

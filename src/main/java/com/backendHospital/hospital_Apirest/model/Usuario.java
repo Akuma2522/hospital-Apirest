@@ -28,6 +28,6 @@ public class Usuario {
     @OneToOne(mappedBy = "usuario")
     private Tecnico tecnico;
 
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
     private List<Dispositivo> dispositivos;
 }
